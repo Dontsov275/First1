@@ -5,36 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Расширенная аналитика производства</title>
     <link rel="stylesheet" href="style.css">
-<!-- Проверьте, что пути совпадают с структурой папок -->
-<link rel="stylesheet" href="style.css">  <!-- Файл в той же папке -->
-<script src="script.js"></script>         <!-- Файл в той же папке -->
-
-
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
-    <div class="dashboard">
-        <h1>Аналитика производства</h1>
-        <div class="charts">
-            <div class="chart-container">
-                <canvas id="productionChart"></canvas>
-            </div>
-            <div class="chart-container">
-                <canvas id="efficiencyChart"></canvas>
+    <div class="container">
+        <h1>Расширенная аналитика производства</h1>
+        
+        <div class="controls">
+            <input type="file" id="csvUpload" accept=".csv">
+            <button id="loadBtn">Загрузить данные</button>
+            <button id="pdfBtn">Экспорт в PDF</button>
+            <p id="fileName">Файл не выбран</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="monthly">Месячные данные</button>
+            <button class="tab-btn" data-tab="quarterly">Квартальные отчёты</button>
+            <button class="tab-btn" data-tab="annual">Годовые отчёты</button>
+        </div>
+        
+        <div id="monthly" class="tab-content active">
+            <div class="chart-section">
+                <h2>Аналитика по цехам</h2>
+                <div class="chart-container" id="workshopCharts"></div>
             </div>
         </div>
-        <div class="stats">
-            <div class="stat-card">
-                <h3>Общий выпуск</h3>
-                <p id="totalOutput">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Эффективность</h3>
-                <p id="efficiency">0%</p>
-            </div>
+        
+        <div id="quarterly" class="tab-content">
+            <div class="report-container" id="quarterlyReports"></div>
+        </div>
+        
+        <div id="annual" class="tab-content">
+            <div class="report-container" id="annualReports"></div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
